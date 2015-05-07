@@ -1,0 +1,30 @@
+{
+  "name": "treedir",
+  "version": "0.0.1",
+  "description": "a tool to tree the directory",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aslinwang/treedir.git"
+  },
+  "keywords": [
+    "tree",
+    "directory"
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "aslinwang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aslinwang/treedir/issues"
+  },
+  "bin": {
+    "tree": "bin/tree"
+  },
+  "main": "tree.js",
+  "dependencies": {
+    "cmd-interface": "0.0.5"
+  },
+  "devDependencies": {
+  }
+}

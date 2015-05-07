@@ -1,0 +1,75 @@
+#!/usr/bin/env node
+'use strict'
+var fs = require('fs');
+var path = require('path');
+var Cmd = require('cmd-interface');
+var projConf = require('../package.json');
+
+var cmd = new Cmd.Commander({
+  name : 'tree'
+});
+
+var Tree = (function(){
+  var nodeSign = '├';
+  var dashSign = '─';
+  var bordSign = '└';
+  var vertSign = '│';
+  var that = {};
+  var cwd = process.cwd();
+  var root = cwd.split(path.sep);
+
+  root = root[root.length - 1];
+
+  var scan = function(level){
+    fs.readdir(cwd, function(err, files){
+      console.log(bordSign + dashSign + root);
+      print(level, files, cwd, '   ', 1);
+    });
+  }
+
+  var print = function(level, files, _cwd, _table, count){
+    var log = '';
+    _cwd += '/';
+    for(var i = 0; i < files.length; i++){
+      var file = files[i];
+      var table = _table;
+      console.log(table + (i == files.length - 1 ? bordSign : nodeSign) + dashSign + file);
+      if(fs.lstatSync(_cwd + file).isDirectory() && (count < level || level == -1)){
+        print(
+          level, 
+          fs.readdirSync(_cwd + file), 
+          _cwd + file, 
+          table + (files.length != 1 ? vertSign + '  ' : '   '), 
+          count++
+        );
+      }
+    }
+  }
+
+  that.action = scan;
+
+  return that;
+}());
+
+cmd.option({
+  cmd : '-f',
+  description : 'tree all files and directory',
+  handler : function(parse){
+    Tree.action(-1);
+  }
+});
+
+cmd.option({
+  cmd : '-l',
+  description : 'tree files and directory hierarchical',
+  handler : function(parse){
+    var level = parse['l'];
+    if(level.length > 0){
+      level = parseInt(level[0], 10);
+    }
+    Tree.action(level);
+  }
+});
+
+cmd.version(projConf.version);
+cmd.run();
