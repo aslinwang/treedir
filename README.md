@@ -21,12 +21,13 @@ Usage
 Example
 ----
 `dtree -l 1`
-└─treedir
-   ├─.git
-   ├─.gitignore
-   ├─.npmignore
-   ├─README.md
-   ├─bin
-   ├─node_modules
-   ├─package.json
-   └─tree.js
+
+  └─treedir
+     ├─.git
+     ├─.gitignore
+     ├─.npmignore
+     ├─README.md
+     ├─bin
+     ├─node_modules
+     ├─package.json
+     └─tree.js
