@@ -21,7 +21,7 @@ Usage
 Example
 ----
 `dtree -l 1`
-
+```
   └─treedir
      ├─.git
      ├─.gitignore
@@ -31,3 +31,4 @@ Example
      ├─node_modules
      ├─package.json
      └─tree.js
+```
