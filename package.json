@@ -1,6 +1,6 @@
 {
   "name": "treedir",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a tool to tree the directory",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "url": "https://github.com/aslinwang/treedir/issues"
   },
   "bin": {
-    "tree": "bin/tree"
+    "dtree": "bin/tree"
   },
   "main": "tree.js",
   "dependencies": {
